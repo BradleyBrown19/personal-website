@@ -2,13 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>PersonalWebsite</title>
+  <title>Bradley Brown</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/1e8cc8dcc1.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <app-root></app-root>
+
+  <script>
+      let backgroundNum = Math.floor(Math.random() * 5);
+      let backgroundImage = [
+      'url("../assets/cloud.gif")',
+      'url("../assets/stars.gif")',
+      'url("../assets/waterfall.gif")',
+      'url("../assets/bridge.gif")',
+      'url("../assets/sky.gif")',
+      'url("../assets/sky2.gif")'
+      ];
+      document.body.style.background = backgroundImage[5];
+    </script>
 </body>
 </html>
