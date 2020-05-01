@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { fadeInOnEnterAnimation, fadeInUpOnEnterAnimation, shakeAnimation, swingAnimation, flipAnimation, wobbleAnimation, jelloAnimation, rotateAnimation } from 'angular-animations';
+import './app.component.scss'
+import { gsap } from 'gsap'
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,7 @@ import { fadeInOnEnterAnimation, fadeInUpOnEnterAnimation, shakeAnimation, swing
     rotateAnimation()
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'personal-website';
   animationState = false;
   animationWithState;
@@ -26,6 +28,26 @@ export class AppComponent {
   animationG;
   animationLogo;
 
+  ngOnInit() {
+    gsap.to("#everything", {duration: 1, y: "-90%"});
+  }
+
+  public startGame() {
+    console.log("starting game")
+    gsap.to("#everything", {duration: 1, y: "-300%"});
+    gsap.to("#game", {duration: 1, transform: "translate(0%, -120%)"})
+    gsap.to("#game", {duration: 1, top: "0%"})
+  }
+
+  public endGame() {
+    console.log("ending game")
+    gsap.to("#everything", {duration: 1, y: "-90%"});
+    gsap.to("#game", {duration: 1, y: "500%"})
+  }
+
+  public restartGame() {
+
+  }
 
   animate(element) {
     console.log('ANIMATE')
