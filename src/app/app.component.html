@@ -64,25 +64,28 @@
       </div>
 
       <div id="buttons">
-        <a class="buttonr" (click)="this.startGame()">Play Game!</a>
-        <a class="buttonr" target="_blank" href="http://www.ehigames.ca/about">Eh I Games</a>
         <a class="button" target="_blank" href="https://drive.google.com/file/d/1OwaeU368mckU7vZtrsaVaHN51buwfo3q/view?usp=sharing">Résumé</a>
-        <a class="buttonr" target="_blank" href="http://medium.com/@theehiproject">Articles</a>
-      </div>
+        <a class="buttonr" (click)="this.startGame()">Play Game!</a>
+    </div>
       
     </nb-card-body>
 </nb-card>
-<nb-card id="game">
-    <nb-card-header id="game-header">
-            <img id="game-balloon" src="../assets/balloons2.png">
-    </nb-card-header>
-    <nb-card-body>
-        <div id="game-body">
-            <div id="buttons">
-                <a class="gamebuttonr" (click)="this.endGame()">Back</a>
-                <a class="gamebuttonr" (click)="this.restartGame()">Restart</a>
+<div id="game">
+        <nb-card #gameCard id="game-card">
+                <nb-card-header id="game-header">
+                        <img id="game-balloon" src="../assets/balloons2.png">
+                </nb-card-header>
+                <nb-card-body>
+                    <div id="game-body">
+                        <div id="buttons">
+                            <a class="gamebuttonr" (click)="this.endGame()">Back</a>
+                            <a class="gamebuttonr" (click)="this.restartGame()">Restart</a>
+                        </div>
+                        <h1>{{this.score}}</h1>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+            <div #gameScreen id="game-screen">
+
             </div>
-            <h1>0</h1>
-        </div>
-    </nb-card-body>
-</nb-card>
+</div>
