@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
   animationG;
   animationLogo;
   @ViewChild('gameScreen') gameScreen;
+  @ViewChild('instructions') instructions;
   goose_h_ratio = (100/screen.height)*100
   goose_w_ratio = (100/screen.width)*100
 
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit {
   public startGame() {
     console.log("starting game")
     this.score = 0
+    this.instructions.nativeElement.innerHTML = "Tap geese, don't let them reach right side!"
     gsap.to("#everything", {duration: 1, y: "-300%"});
     gsap.to("#game", {duration: 1, transform: "translate(0%, -0%)"})
     gsap.to("#game", {duration: 1, top: "0%"})
@@ -66,27 +68,28 @@ export class AppComponent implements OnInit {
           this.gameScreen.nativeElement.removeChild(this.gameScreen.nativeElement.lastChild);
         }
         this.timer = 0
+        this.instructions.nativeElement.innerHTML = ""
         this.timerInterval = setInterval(() => {
           this.timer += 1
         }, 1000)
         this.gooseInterval = setInterval(this.maybeGoose.bind(this), 250);
       }
-    }, 1500)
+    }, 3000)
   }
 
   maybeGoose() {
     let percentage
-    if (this.timer > 300) {
+    if (this.timer > 120) {
       percentage = 0.9
-    } else if (this.timer > 200) {
+    } else if (this.timer > 100) {
       percentage = 0.8
-    } else if (this.timer > 150) {
+    } else if (this.timer > 80) {
       percentage = 0.7
-    } else if (this.timer > 125) {
+    } else if (this.timer > 60) {
       percentage = 0.6
-    } else if (this.timer > 75) {
+    } else if (this.timer > 40) {
       percentage = 0.5
-    } else if (this.timer > 50) {
+    } else if (this.timer > 20) {
       percentage = 0.4
     } else {
       percentage = 0.3
@@ -148,15 +151,15 @@ export class AppComponent implements OnInit {
     elem.style.margin = "0";
     elem.style.top = this.randomNumber(0, 100-this.goose_h_ratio).toString() + "%"
     let duration
-    if (this.timer > 300) {
+    if (this.timer > 100) {
       duration = this.randomNumber(2,3)
-    } else if (this.timer > 200) {
+    } else if (this.timer > 80) {
       duration = this.randomNumber(3,5)
-    } else if (this.timer > 200) {
+    } else if (this.timer > 60) {
       duration = this.randomNumber(4,6)
-    } else if (this.timer > 150) {
+    } else if (this.timer > 40) {
       duration = this.randomNumber(5,6)
-    } else if (this.timer > 100) {
+    } else if (this.timer > 20) {
       duration = this.randomNumber(5,9)
     } else {
       duration = this.randomNumber(6,10)
