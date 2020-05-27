@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   timer: any
   timerInterval: any
   animations: any[] = []
+  fallEnds: any[] = []
   animationState = false;
   animationWithState;
   animationLI;
@@ -37,13 +38,15 @@ export class AppComponent implements OnInit {
   animationE;
   animationG;
   animationLogo;
+  @ViewChild('game') game;
   @ViewChild('gameScreen') gameScreen;
   @ViewChild('instructions') instructions;
   goose_h_ratio = (100/screen.height)*100
   goose_w_ratio = (100/screen.width)*100
 
   ngOnInit() {
-    gsap.to("#everything", {duration: 1, y: "-90%"});
+    gsap.to("#everything", {duration: 2, y: "-90%"});
+    // Get the current page scroll position 
   }
 
   randomNumber(min, max) {
@@ -51,18 +54,24 @@ export class AppComponent implements OnInit {
   }
 
   public startGame() {
-    console.log("starting game")
     this.score = 0
     this.instructions.nativeElement.innerHTML = "Tap geese, don't let them reach right side!"
-    gsap.to("#everything", {duration: 1, y: "-300%"});
-    gsap.to("#game", {duration: 1, transform: "translate(0%, -0%)"})
-    gsap.to("#game", {duration: 1, top: "0%"})
-    this.startGameCycle()
+    gsap.to("#everything", {duration: 3, y: "-300%"});
+    gsap.to("#game", {duration: 3, transform: "translate(0%, -0%)"})
+    gsap.to("#game", {duration: 3, top: "0%"})
+    this.startGameCycle(true)
   }
 
-  startGameCycle() {
+  startGameCycle(fromBeggining) {
     this.isOver = false
+    let time
+    if (fromBeggining == true) {
+      time = 5000
+    } else {
+      time = 2000
+    }
     setTimeout(() => {
+      this.score = 0
         if (this.isOver == false) {
         while (this.gameScreen.nativeElement.firstChild) {
           this.gameScreen.nativeElement.removeChild(this.gameScreen.nativeElement.lastChild);
@@ -74,7 +83,7 @@ export class AppComponent implements OnInit {
         }, 1000)
         this.gooseInterval = setInterval(this.maybeGoose.bind(this), 250);
       }
-    }, 3000)
+    }, time)
   }
 
   maybeGoose() {
@@ -95,10 +104,7 @@ export class AppComponent implements OnInit {
       percentage = 0.3
     }
 
-    console.log(percentage)
-    console.log(Math.random())
     if (Math.random() < percentage) {
-      console.log("MAKING GOOSOE")
       this.addGooseToGame()
     }
   }
@@ -112,25 +118,33 @@ export class AppComponent implements OnInit {
     while (this.gameScreen.nativeElement.firstChild) {
       this.gameScreen.nativeElement.removeChild(this.gameScreen.nativeElement.lastChild);
     }
-    gsap.to("#everything", {duration: 1, y: "-90%"});
-    gsap.to("#game", {duration: 1, y: "500%"})
+    gsap.to("#everything", {duration: 2, y: "-90%"});
+    gsap.to("#game", {duration: 3, y: "-150%"})
   }
 
   removeGoose(click) {
-    console.log("GOOSE CLICKED")
     if (this.isOver == false) {
       this.score += 1
       let goose = document.elementFromPoint(click.x, click.y)
       gsap.killTweensOf(goose)
-      gsap.to(goose, {duration: 3.5, y: 1.5*screen.height})
+      let self = this;
+      let fallEnd = gsap.to(goose, {duration: 3, y: 1*screen.height})
+
+      this.fallEnds.push(goose);
+
+      fallEnd.eventCallback('onComplete', () => {
+        this.renderer.removeChild(this.gameScreen.nativeElement,this.fallEnds[0])
+        this.fallEnds.shift()
+      })
+
       gsap.to(goose, {rotation: -90, duration: 1})
+      
       console.log(goose)
     }
     //goose.remove()
   }
 
   gameOver() {
-    console.log("GAME OVER")
     this.score = "GAME OVER"
     this.isOver = true
     clearInterval(this.timerInterval)
@@ -183,12 +197,14 @@ export class AppComponent implements OnInit {
   }
 
   public restartGame() {
-    this.score = 0
+    if (this.isOver) {
+      this.score = "Restarting..."
+    }
     this.isOver = true
     this.stopAllAnimations()
     clearInterval(this.timerInterval)
     clearInterval(this.gooseInterval)
-    this.startGameCycle()
+    this.startGameCycle(false)
   }
 
 
@@ -198,7 +214,6 @@ export class AppComponent implements OnInit {
   }
 
   animate(element) {
-    console.log('ANIMATE')
     if (element == 'li') {
       this.animationLI = false;
       setTimeout(() => {

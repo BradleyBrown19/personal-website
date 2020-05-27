@@ -24,7 +24,7 @@
                               <a class="a" href="https://www.linkedin.com/in/bradleycabrown" target="_blank"><i (mouseover)="animate('li')" [@flip]="this.animationLI" class="fab fa-linkedin icon"></i></a>
                           </mat-grid-tile>    
                           <mat-grid-tile>
-                              <a class="a" href="https://drive.google.com/file/d/1OwaeU368mckU7vZtrsaVaHN51buwfo3q/view?usp=sharing" target="_blank" (mouseover)="animate('resume')"><i [@wobble]="this.animationR" class="fas fa-file icon"></i></a>
+                              <a class="a" href="https://drive.google.com/file/d/1vikI42pGiD0ChrvngBlq43YqciaqVWxQ/view?usp=sharing" target="_blank" (mouseover)="animate('resume')"><i [@wobble]="this.animationR" class="fas fa-file icon"></i></a>
                         </mat-grid-tile>
                         <mat-grid-tile>
                               <a class="a" href="mailto:bradley19brown@gmail.com" (mouseover)="animate('email')"><i [@jello]="this.animationE" class="fas fa-envelope-square icon"></i></a>
@@ -46,7 +46,7 @@
                             <a class="a" href="https://www.linkedin.com/in/bradleycabrown" target="_blank"><i (mouseover)="animate('li')" [@flip]="this.animationLI" class="fab fa-linkedin icon"></i></a>
                         </mat-grid-tile>    
                         <mat-grid-tile>
-                            <a class="a" href="https://drive.google.com/file/d/1OwaeU368mckU7vZtrsaVaHN51buwfo3q/view?usp=sharing" target="_blank" (mouseover)="animate('resume')"><i [@wobble]="this.animationR" class="fas fa-file icon"></i></a>
+                            <a class="a" href="https://drive.google.com/file/d/1vikI42pGiD0ChrvngBlq43YqciaqVWxQ/view?usp=sharing" target="_blank" (mouseover)="animate('resume')"><i [@wobble]="this.animationR" class="fas fa-file icon"></i></a>
                       </mat-grid-tile>
                       <mat-grid-tile>
                             <a class="a" href="mailto:bradley19brown@gmail.com" (mouseover)="animate('email')"><i [@jello]="this.animationE" class="fas fa-envelope-square icon"></i></a>
@@ -64,13 +64,15 @@
       </div>
 
       <div id="buttons">
-        <a class="button" target="_blank" href="https://drive.google.com/file/d/1OwaeU368mckU7vZtrsaVaHN51buwfo3q/view?usp=sharing">Résumé</a>
-        <a class="buttonr" (click)="this.startGame()">Play Game!</a>
+        <a class="button" target="_blank" href="https://drive.google.com/file/d/1vikI42pGiD0ChrvngBlq43YqciaqVWxQ/view?usp=sharing">Résumé</a>
+        <a class="buttonr" target="_blank" href="https://bradleybrown19.github.io/ModernArchitecturesFromScratch/">DL Library</a>
+        <a class="buttonr2" target="_blank" href="https://medium.com/@theehiproject">Articles</a>
+        <a class="buttonr" (click)="this.startGame()"><i class="fas fa-gamepad"></i></a>
     </div>
       
     </nb-card-body>
 </nb-card>
-<div id="game">
+<div #game id="game">
         <nb-card #gameCard id="game-card">
                 <nb-card-header id="game-header">
                         <img id="game-balloon" src="../assets/balloons2.png">

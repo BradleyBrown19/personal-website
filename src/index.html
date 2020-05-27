@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167762596-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-167762596-1');
+  </script>
   <meta charset="utf-8">
   <title>Bradley Brown</title>
   <base href="/">
@@ -16,16 +25,7 @@
   <app-root></app-root>
 
   <script>
-      let backgroundNum = Math.floor(Math.random() * 5);
-      let backgroundImage = [
-      'url("../assets/cloud.gif")',
-      'url("../assets/stars.gif")',
-      'url("../assets/waterfall.gif")',
-      'url("../assets/bridge.gif")',
-      'url("../assets/sky.gif")',
-      'url("../assets/sky2.gif")'
-      ];
-      document.body.style.background = backgroundImage[5];
+      document.body.style.background = 'url("../assets/sky.jpg")';
     </script>
 </body>
 </html>
