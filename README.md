@@ -1,6 +1,6 @@
 # PersonalWebsite
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+A personal landing page for my projects and links
 
 ## Development server
 
